@@ -2,6 +2,8 @@
 
 Notes collected watching [Bartosz Milewski's lecture](https://www.youtube.com/watch?v=gHiyzctYqZ0) about Monad.
 
+Monads are algebraic structures useful to simulate side-effects (state management is a side effect for example) mantaining the language pure.
+
 ## Problem
 
 Compose two pure functions so that, on the result of each of them, an additional action or effect is executed. 
