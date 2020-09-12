@@ -2,7 +2,7 @@
 
 Notes collected watching [Bartosz Milewski's lecture](https://www.youtube.com/watch?v=gHiyzctYqZ0) about Monad.
 
-Monads are algebraic structures useful to simulate side-effects (state management is a side effect for example) mantaining the language pure.
+Monads are algebraic structures used to simulate imperative programming  to execute side-effects, still mantaining the language functionally pure (state management is an example of side effect).
 
 ## Problem
 
