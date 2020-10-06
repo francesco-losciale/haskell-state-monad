@@ -6,7 +6,7 @@ Monads are algebraic structures used to simulate imperative programming  and exe
 
 ## Problem
 
-Compose two pure functions so that, on the result of each of them, an additional action or effect is executed. 
+Compose two pure functions so that an additional action or effect is executed at the same time. 
 
 Given the functions `f` and `g`, we can't use the usual `f . g` composition. The type of the output of `f` should match the type of the input of `g`.  
 
