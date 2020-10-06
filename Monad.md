@@ -10,7 +10,7 @@ Compose two pure functions so that an additional action or effect is executed at
 
 Given the functions `f` and `g`, we can't use the usual `f . g` composition if we want to execute an effect after `f`. In order to use `.` composition operator, the type of the output of `f` should match the type of the input of `g`.  
 
-What we want to achieve is actually this: 
+What we want to achieve is this: 
 
 Given two pure functions `f` and `g` below, we want a new pure function which would behave as the composition of `f` and `g`. 
 
