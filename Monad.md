@@ -54,7 +54,7 @@ After renaming `b` to `a` and `c` to `b`, we have the generic...
 
 Note that `f` is a function on `a`, that is the element contained in the `m` structure of the first argument.
 
-If `m` was a Functor - and a Monad is implicitly a Functor -, we could apply `f` to `m a`, we could "get insisde" `m a`, we could lift `f` over `m a`, we could `fmap` over `m a `.
+If `m` was a Functor - and a Monad is by definition a Functor -, we could apply `f` to `m a`, we could "get insisde" `m a`, we could lift `f` over `m a`, we could `fmap` over `m a `.
 
 ```haskell
 (>>=) :: m a -> (a -> m b) -> m b
