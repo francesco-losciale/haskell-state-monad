@@ -8,7 +8,7 @@ Monads are algebraic structures used to simulate imperative programming  and exe
 
 Compose two pure functions so that an additional action or effect is executed at the same time. 
 
-Given the functions `f` and `g`, we can't use the usual `f . g` composition. The type of the output of `f` should match the type of the input of `g`.  
+Given the functions `f` and `g`, we can't use the usual `f . g` composition if we want to execute an effect after `f`. In order to use `.` composition operator, the type of the output of `f` should match the type of the input of `g`.  
 
 What we want to achieve is actually this: 
 
