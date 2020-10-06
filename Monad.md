@@ -45,7 +45,7 @@ Let's define `>>=` :
 (>>=) :: f a ->      g     -> m c
 ```
 
-After a renaming of `b` to `a` and `c` to `b`, we have the generic...
+After renaming `b` to `a` and `c` to `b`, we have the generic...
 
 ```haskell
 (>>=) :: m a -> (a -> m b) -> m b
