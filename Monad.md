@@ -25,7 +25,7 @@ Note: `f >=> g = (a -> m c)` where `a` is the input of `f` and `m c` is the outp
 
 Again, since the `.` operator is used to compose functions with the type of the output of `f` that matches the type of the input
 of `g`, ...
-the `(>=>)` operator is used to match an "embellished" output (for example, with logging) to the input of another function. 
+the `(>=>)` operator is used to match an "embellished" output (for example, with logging side effects) to the input of another function. 
 
 ## Solution
 
