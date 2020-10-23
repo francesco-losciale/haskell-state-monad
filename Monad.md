@@ -2,18 +2,19 @@
 
 Notes collected watching [Bartosz Milewski's lecture](https://www.youtube.com/watch?v=gHiyzctYqZ0) about Monad.
 
-Monads are algebraic structures used to simulate imperative programming  and execute side-effects, still mantaining the language functionally pure (state management is an example of side effect).
+Monads are algebraic structures that can be used to simulate imperative style in pure functional programming languages.
 
 ## Problem
 
-Compose two pure functions so that an additional action or effect is executed at the same time. 
+Compose two pure functions so that, when the composition is executed, an additional action or side effect happens at the same time. 
 
-Given the functions `f` and `g`, we can't use the usual `f . g` composition if we want to execute an effect after `f`. In order to use `.` composition operator, the type of the output of `f` should match the type of the input of `g`.  
+Given the functions `f` and `g`, we can't use the simple `f . g` composition when we want to execute an additional side effect. In order to use `.` composition operator, the type of the output of `f` must match the type of the input of `g`.  
 
-What we want to achieve is this: 
+In other words, we want to achieve this: 
 
-Given two pure functions `f` and `g` below, we want a new pure function `f >=> g` that would behave as the composition of `f` and `g`. 
+Given two pure functions `f` and `g` defined below, we want the new pure function `f >=> g` that would behave as the composition of `f` and `g`. 
 
+`f` is a function that returns `b` plus a side effect `m`. We can write this result as `m b`. As you can see, the output of `f` doesn't match the input of `g` - that's why we can't use `.`.
 
 ```haskell
 (>=>) :: (a -> m b) -> (b -> m c) -> (a -> m c)
