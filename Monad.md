@@ -46,16 +46,16 @@ If we can define `>>=`, we've found a way to make this work:
 (>>=) :: f a ->      g     -> m c
 ```
 
-Note that `f` is a function on `b`, that is the element contained in the `m` structure of the first argument.
+Note that `g` is a function on `b`, that is the element contained in the `m` structure of the first argument.
 
-If `m` was a Functor - and a Monad is by definition a Functor -, we could apply `f` to `m b`, we could "get insisde" `m b`, we could lift `f` over `m b`, we could `fmap` over `m b `.
+If `m` was a Functor - and a Monad is by definition a Functor -, we could apply `g` to `m b`, we could "get inside" `m b` to apply `(b -> m c)`, we could lift `g` over `m b`, we could `fmap` over `m b `.
 
 ```haskell
 (>>=) :: m b -> (b -> m c) -> m c
-                     f  
-m b >>= f =      fmap f m b
-m b >>= f =      fmap (b -> m c) m b
-m b >>= f =      m (m c)
+                     g  
+m b >>= g =      fmap g m b
+m b >>= g =      fmap (b -> m c) m b
+m b >>= g =      m (m c)
 ``` 
 You can see `c` is wrapped twice in `m`, this is not matching our expected `m c`. 
 
@@ -71,10 +71,10 @@ So, the final definition of `(>>=)` is ...
 
 ```haskell
 (>>=) :: m b -> (b -> m c) -> m c
-m b >>= f = join fmap f m b
-m b >>= f = join fmap (b -> m c) m b
-m b >>= f = join m (m c)
-m b >>= f = m c
+m b >>= g = join fmap g m b
+m b >>= g = join fmap (b -> m c) m b
+m b >>= g = join m (m c)
+m b >>= g = m c
 ```
 We have defined `(>>=)` and we can use it to compose monadic functions (function with side effects). 
 In Haskell books the definition above is described as below, it's the same thing just after renaming `b` to `a` and `c` to `b`.
