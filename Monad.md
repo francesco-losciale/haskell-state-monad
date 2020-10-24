@@ -39,7 +39,7 @@ f (>=>) g = λa -> let m b = f a
 
 In this step we have applied `f` on `a` and received `f a` (ie. `m b`). A new operator `>>=` has been introduced.
 
-Let's define `>>=` :
+If we can define `>>=`, we've found a way to make this work:
 
 ```haskell
 (>>=) :: m b -> (b -> m c) -> m c
