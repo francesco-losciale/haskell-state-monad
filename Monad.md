@@ -78,7 +78,7 @@ m b >>= g = m c
 ```
 We have defined `(>>=)` and we can use it to compose monadic functions (function with side effects). 
 In Haskell books the definition above is described as below, it's the same thing just after renaming `b` to `a` and `c` to `b`.
-We need to add another function that, given `a` can return a monad `m a` - ie. `a` with an `m` side effect.
+We need to add another function that, given `a` can return a monad `m a` - ie. `a` with an `m` side effect. This last function would be used as a first step of the composition chaining.
 
 ```haskell
 (>>=) :: m a -> (a -> m b) -> m b 
