@@ -46,30 +46,23 @@ Let's define `>>=` :
 (>>=) :: f a ->      g     -> m c
 ```
 
-After renaming `b` to `a` and `c` to `b`, we have the generic...
+Note that `f` is a function on `b`, that is the element contained in the `m` structure of the first argument.
+
+If `m` was a Functor - and a Monad is by definition a Functor -, we could apply `f` to `m b`, we could "get insisde" `m b`, we could lift `f` over `m b`, we could `fmap` over `m b `.
 
 ```haskell
-(>>=) :: m a -> (a -> m b) -> m b
+(>>=) :: m b -> (b -> m c) -> m c
                      f  
-```
-
-Note that `f` is a function on `a`, that is the element contained in the `m` structure of the first argument.
-
-If `m` was a Functor - and a Monad is by definition a Functor -, we could apply `f` to `m a`, we could "get insisde" `m a`, we could lift `f` over `m a`, we could `fmap` over `m a `.
-
-```haskell
-(>>=) :: m a -> (a -> m b) -> m b
-                     f  
-m a >>= f =      fmap f m a
-m a >>= f =      fmap (a -> m b) m a
-m a >>= f =      m (m b)
+m b >>= f =      fmap f m b
+m b >>= f =      fmap (b -> m c) m b
+m b >>= f =      m (m c)
 ``` 
-You can see `b` is wrapped twice in `m`, this is not matching our expectation `m b`. 
+You can see `c` is wrapped twice in `m`, this is not matching our expected `m c`. 
 
 We can simply fix this introducing the function `join`:
 
 ```haskell
-join :: m (m a) -> m a 
+join :: m (m b) -> m b 
 join = ...
 ```
 The implementation depends on the kind of Monad itself - see [1]
@@ -77,11 +70,20 @@ The implementation depends on the kind of Monad itself - see [1]
 So, the final definition of `(>>=)` is ...
 
 ```haskell
-(>>=) :: m a -> (a -> m b) -> m b
-m a >>= f = join fmap f m a
-m a >>= f = join fmap (a -> m b) m a
-m a >>= f = join m (m b)
-m a >>= f = m b
+(>>=) :: m b -> (b -> m c) -> m c
+m b >>= f = join fmap f m b
+m b >>= f = join fmap (b -> m c) m b
+m b >>= f = join m (m c)
+m b >>= f = m c
 ```
+We have defined `(>>=)` and we can use it to compose monadic functions (function with side effects). 
+In Haskell books the definition above is described as below, it's the same thing just after renaming `b` to `a` and `c` to `b`.
+We need to add another function that, given `a` can return a monad `m a` - ie. `a` with an `m` side effect.
+
+```haskell
+(>>=) :: m a -> (a -> m b) -> m b 
+(return) :: a -> m a
+```
+
 
 [1] - Monad join function - https://stackoverflow.com/questions/3382210/monad-join-function
