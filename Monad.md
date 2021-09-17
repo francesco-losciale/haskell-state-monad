@@ -1,8 +1,18 @@
 # Monad definition 
 
-Notes collected watching [Bartosz Milewski's lecture](https://www.youtube.com/watch?v=gHiyzctYqZ0) about Monad.
+These notes have been collected while watching [Bartosz Milewski's lecture](https://www.youtube.com/watch?v=gHiyzctYqZ0) about Monad.
 
-Monads are algebraic structures that can be used to simulate imperative style in pure functional programming languages.
+Monads are algebraic structures that enable compositions of functions with side effects and keep the language functionally pure at the same time. For example, we can use them to simulate imperative style in a pure functional language that for its nature does not allow sequential statements. They also help to have a clear distinction, within the language, between pure functions and impure functions. 
+
+To the compiler, a function that returns a type `b` it's not the same thing of a function that returns a type `b` that also produces a side effect `m`. 
+
+```
+b != m b
+```
+
+This distinction would be useful to check referential transparency at compile time, leading to "more correct" programs. In a language like Haskell, we can leverage the type system (and the Monad type class) to check that impure functions call pure functions but not the other way round. 
+
+
 
 ## Problem
 
